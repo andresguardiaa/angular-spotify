@@ -11,20 +11,31 @@ import { provideClientHydration, withEventReplay } from '@angular/platform-brows
     children: [
       {
         path: '',
-        loadComponent: () => import('./modules/home/home.component').then(m => m.HomeComponent)
+        loadComponent: () => import('./modules/home/home.component').then(m => m.HomeComponent),
+        pathMatch: 'full',
       },
       {
         path: 'tracks',
         loadComponent: () => import('./modules/tracks/tracks.component').then(m => m.TracksComponent)
-      }
+      },
+      {
+        path:'favourites',
+        loadComponent: () => import('./modules/favourites/favourites.component').then(m => m.FavouritesComponent)
+      }
     ]
   },
   {
-    path: '',
+    path: 'auth',
     loadComponent: () => import('./layouts/empty-layout/empty-layout.component').then(m => m.EmptyLayoutComponent),
     children: [
+      {
+        path: '',
+        redirectTo: 'login',
+        pathMatch: 'full'
+
+      },
       {
-        path: 'auth',
+        path: 'login',
         loadComponent: () => import('./modules/auth/auth.component').then(m => m.AuthComponent)
       }
     ]
