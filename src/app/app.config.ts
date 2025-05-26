@@ -3,30 +3,33 @@ import { provideRouter, Routes } from '@angular/router';
 
 
 import { provideClientHydration, withEventReplay } from '@angular/platform-browser';
+import { MainLayoutComponent } from './layouts/main-layout/main-layout.component';
+import { EmptyLayoutComponent } from './layouts/empty-layout/empty-layout.component';
+import { HomeComponent } from '@modules/home/home.component';
+import { AuthComponent } from '@modules/auth/auth.component';
+import { TracksComponent } from '@modules/tracks/tracks.component';
 
  export const routes: Routes = [
     {
     path: '',
-    loadComponent: () => import('./layouts/main-layout/main-layout.component').then(m => m.MainLayoutComponent),
+    component: MainLayoutComponent,
     children: [
       {
         path: '',
-        loadComponent: () => import('./modules/home/home.component').then(m => m.HomeComponent),
+        component: HomeComponent,
         pathMatch: 'full',
       },
-      {
-        path: 'tracks',
-        loadComponent: () => import('./modules/tracks/tracks.component').then(m => m.TracksComponent)
-      },
       {
-        path:'favourites',
-        loadComponent: () => import('./modules/favourites/favourites.component').then(m => m.FavouritesComponent)
+        path:'tracks',
+        loadComponent() {
+          
+        },
       }
     ]
   },
   {
     path: 'auth',
-    loadComponent: () => import('./layouts/empty-layout/empty-layout.component').then(m => m.EmptyLayoutComponent),
+    component: EmptyLayoutComponent,
     children: [
       {
         path: '',
@@ -36,7 +39,7 @@ import { provideClientHydration, withEventReplay } from '@angular/platform-brows
       },
       {
         path: 'login',
-        loadComponent: () => import('./modules/auth/auth.component').then(m => m.AuthComponent)
+        component: AuthComponent
       }
     ]
   }
