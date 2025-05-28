@@ -1,12 +1,12 @@
 import { CommonModule } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
+import { Router, RouterModule } from '@angular/router';
 //import { OnInit } from '@angular/core';
 
 @Component({
   selector: 'app-sidebar',
   standalone:true, 
-  imports: [CommonModule],
+  imports: [CommonModule, RouterModule],
   templateUrl: './sidebar.component.html',
   styleUrl: './sidebar.component.css'
 })
@@ -23,7 +23,7 @@ export class SidebarComponent implements OnInit{
       {
         name: 'Home',
         icon: 'uil uil-estate',
-        router: ['/', 'auth']
+        router: ['/', 'tracks']
       },
       {
         name: 'Buscar',
@@ -33,7 +33,7 @@ export class SidebarComponent implements OnInit{
       {
         name: 'Tu biblioteca',
         icon: 'uil uil-chart',
-        router: ['/', 'favorites'],
+        router: ['/', 'favourites'],
         query: { hola: 'mundo' }
       }
     ]

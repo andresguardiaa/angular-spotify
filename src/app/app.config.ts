@@ -22,6 +22,10 @@ import { provideClientHydration, withEventReplay } from '@angular/platform-brows
       {
         path: 'favourites',
         loadComponent: () => import('./modules/favourites/favourites.component').then(m => m.FavouritesComponent)
+      },
+      {
+        path: 'history',
+        loadComponent: () => import('./modules/history/history.component').then(m => m.HistoryComponent)
       }
     ]
   },
